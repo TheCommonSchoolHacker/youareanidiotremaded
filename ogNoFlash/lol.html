@@ -6,7 +6,11 @@
 <style>
 * { text-align: center; }
 html, body { margin: 0; height: 100%; overflow: hidden; }
-img { height: 100%; object-fit: cover; }
+img {
+	max-width: 100%;
+	height: auto;
+	width: auto\9; /* ie8 */
+}
 audio { display:none; }
 </style>
 </head>
