@@ -9,3 +9,10 @@ window.mobileAndTabletCheck = function() {
 if (window.mobileAndTabletCheck()) window.location.href = "ogNoFlash/";
 
 */
+
+document.addEventListener("mousedown", StartAnimation);
+document.addEventListener("keydown", StartAnimation);
+
+function StartAnimation() {
+	document.getElementById("audioHahaha").play();
+}
