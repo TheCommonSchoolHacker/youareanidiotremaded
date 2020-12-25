@@ -42,8 +42,9 @@ function RhythmFunc() {
   setTimeout(function() { b5.close(); }, 10935);
   setTimeout(function() { b4.close(); }, 11103);
   setTimeout(function() {
-		moveWindowSlowlyTo(b3, percToN(25, screenWidth), percToN(50, screenHeight), 2000);
-		moveWindowSlowlyTo(b2, percToN(50, screenWidth), percToN(50, screenHeight), 2000);
-		moveWindowSlowlyTo(b1, percToN(75, screenWidth), percToN(50, screenHeight), 2000);
+    // Browsers block this because of cross-origin security problems. To fix.
+    moveWindowSlowlyTo(b3, percToN(25, screenWidth), percToN(50, screenHeight), 2000);
+    moveWindowSlowlyTo(b2, percToN(50, screenWidth), percToN(50, screenHeight), 2000);
+    moveWindowSlowlyTo(b1, percToN(75, screenWidth), percToN(50, screenHeight), 2000);
   }, 11200);
 }

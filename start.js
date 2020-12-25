@@ -4,8 +4,8 @@ window.mobileAndTabletCheck = function() {
   return check;
 };
 function RedirectToOGnoFlash(msg) {
-	if (msg) alert(msg);
-	setTimeout(function() { window.location.href = "ogNoFlash/index.html"; }, 1000);
+  if (msg) alert(msg);
+  setTimeout(function() { window.location.href = "ogNoFlash/index.html"; }, 1500);
 }
 
 var m;
@@ -22,12 +22,12 @@ function StartAnimation() {
   if (stFinished) {return;}
   // Detect area where windows can move
   if (!wcOpened) {
-  	widthWindowCheck = openWindow();
-  	heightWindowCheck = openWindow();
+    widthWindowCheck = openWindow();
+    heightWindowCheck = openWindow();
     wcOpened = true;
   }
   try {
-  	prevXposWWC = widthWindowCheck.screenLeft;
+    prevXposWWC = widthWindowCheck.screenLeft;
     prevYposHWC = heightWindowCheck.screenTop;
   	widthWindowCheck.moveBy(300, 0);
   	heightWindowCheck.moveBy(0, 300);
@@ -67,14 +67,14 @@ function openWindow(location, newWindowX, newWindowY, newWindowWidth, newWindowH
 function moveWindowSlowlyTo(mvWin, finalX, finalY, time) {
   var stDate = new Date();
   var finalDate = stDate + time;
-	var newinterval = setInterval(function() {
+  var newinterval = setInterval(function() {
     var nowDate = new Date();
     var remTime = finalDate - nowDate;
     var nextx = (finalX - mvWin.screenLeft) / remTime;
     var nexty = (finalY - mvWin.screenTop)  / remTime;
-		mvWin.moveBy(nextx, nexty);
-    console.log(nextx + ", " + nexty + ". Moving to: " + finalX + ", " + finalY);
-	}, 1);
+	mvWin.moveBy(nextx, nexty);
+    console.log(nextx + ", " + nexty + ". Moving to: " + finalX + ", " + finalY); // DEBUG (TO REMOVE)
+  }, 1);
   if (approxeq(mvWin.screenLeft, finalX) && approxeq(mvWin.screenTop, finalY)) clearInterval(newinterval);
 }
 
@@ -84,5 +84,5 @@ function approxeq(v1, v2, epsilon) {
 };
 
 function percToN(percentage, n) {
-	return (percentage / 100) * n;
+  return (percentage / 100) * n;
 }
