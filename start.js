@@ -75,7 +75,11 @@ function moveWindowSlowlyTo(mvWin, finalX, finalY, time) {
 	mvWin.moveBy(nextx, nexty);
     console.log(nextx + ", " + nexty + ". Moving to: " + finalX + ", " + finalY); // DEBUG (TO REMOVE)
   }, 1);
-  if (approxeq(mvWin.screenLeft, finalX) && approxeq(mvWin.screenTop, finalY)) clearInterval(newinterval);
+  setTimeout(function() {
+    while (newinterval) {
+      if (approxeq(mvWin.screenLeft, finalX) && approxeq(mvWin.screenTop, finalY)) clearInterval(newinterval);
+    }
+  }, 0);
 }
 
 function approxeq(v1, v2, epsilon) {
