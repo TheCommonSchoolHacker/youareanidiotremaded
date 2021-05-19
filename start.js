@@ -65,21 +65,18 @@ function openWindow(location, newWindowX, newWindowY, newWindowWidth, newWindowH
 }
 
 function moveWindowSlowlyTo(mvWin, finalX, finalY, time) {
-  var stDate = new Date();
-  var finalDate = stDate + time;
+  var finalDate = Date.now() + time;
   var newinterval = setInterval(function() {
-    var nowDate = new Date();
-    var remTime = finalDate - nowDate;
+    var remTime = finalDate - Date.now();
     var nextx = (finalX - mvWin.screenLeft) / remTime;
     var nexty = (finalY - mvWin.screenTop)  / remTime;
 	mvWin.moveBy(nextx, nexty);
     console.log(nextx + ", " + nexty + ". Moving to: " + finalX + ", " + finalY); // DEBUG (TO REMOVE)
-  }, 1);
-  setTimeout(function() {
-    while (newinterval) {
-      if (approxeq(mvWin.screenLeft, finalX) && approxeq(mvWin.screenTop, finalY)) clearInterval(newinterval);
-    }
-  }, 0);
+	if (approxeq(mvWin.screenLeft, finalX) && approxeq(mvWin.screenTop, finalY)) {
+		clearInterval(newinterval);
+		console.log('loop stopped');
+	}
+  }, 10);
 }
 
 function approxeq(v1, v2, epsilon) {
