@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Idiot!</title>
+    <style>
+		html {
+			height: 100%;
+		}
+        body {
+			background-image: url('faceBlack.png');
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
+			background-color: black;
+		}
+    </style>
+	<script>
+	function approxeq(v1, v2, epsilon) {
+	  epsilon = epsilon || 2;
+	  return Math.abs(v1 - v2) < epsilon;
+	};
+
+	window.addEventListener("message", (event) => {
+	  if (typeof event.data === 'string' || event.data instanceof String) {
+	    document.body.style.backgroundImage = "url('" + event.data + "')";
+	    return;
+	  }
+	  
+	  var finalDate = Date.now() + event.data[2];
+	  var newinterval = setInterval(function() {
+	    let remTime = finalDate - Date.now();
+		if (remTime <= 0 || (approxeq(window.screenLeft, event.data[0]) && approxeq(window.screenTop, event.data[1]))) {
+		  window.moveBy(event.data[0] - window.screenLeft, event.data[1] - window.screenTop);
+		  console.log('loop stopped');
+		  clearInterval(newinterval);
+		} else {
+	      let nextx = (event.data[0] - window.screenLeft) / (remTime / 10);
+		  let nexty = (event.data[1] - window.screenTop)  / (remTime / 10);
+		  window.moveBy(nextx, nexty);
+	    }
+	  }, 10);
+	}, false);
+	</script>
+</head>
+<body></body>
+</html>
