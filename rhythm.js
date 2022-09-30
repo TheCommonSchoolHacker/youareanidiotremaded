@@ -85,11 +85,13 @@ async function RhythmFunc() {
   await sleep(168);
   b4.close();
   await sleep(96);
-  b3.postMessage([percToN(25, screenWidth), percToN(50, screenHeight), 2000], '*');
-  b2.postMessage([percToN(50, screenWidth), percToN(50, screenHeight), 2000], '*');
-  b1.postMessage([percToN(75, screenWidth), percToN(50, screenHeight), 2000], '*');
+  b3.postMessage([percToN(25, screenWidth), percToN(50, screenHeight), 1500], '*');
+  b2.postMessage([percToN(50, screenWidth), percToN(50, screenHeight), 1500], '*');
+  b1.postMessage([percToN(75, screenWidth), percToN(50, screenHeight), 1500], '*');
 }
 
+var lastSleep = 0;
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  if (lastSleep == 0) lastSleep = Date.now();
+  return new Promise(resolve => setTimeout(() => { lastSleep += ms; resolve(); }, Math.max(lastSleep + ms - Date.now(), 0)));
 }
