@@ -5,7 +5,8 @@ window.mobileAndTabletCheck = function() {
 };
 function RedirectToOGnoFlash(msg) {
   if (msg) alert(msg);
-  setTimeout(function() { window.location.href = "ogNoFlash/index.html"; }, 2500);
+  let time = msg ? 2500 : 0;
+  setTimeout(function() { window.location.href = "ogNoFlash/index.html"; }, time);
 }
 
 var m;
@@ -31,8 +32,7 @@ function StartAnimation() {
     prevYposHWC = heightWindowCheck.screenTop;
   	widthWindowCheck.moveBy(300, 0);
   	heightWindowCheck.moveBy(0, 300);
-  }
-  catch(error) {
+  } catch(error) {
     stFinished = true;
     try { widthWindowCheck.close(); heightWindowCheck.close(); } catch(error) {} // Try closing the windows
     console.log(error);
@@ -46,8 +46,7 @@ function StartAnimation() {
   	widthWindowCheck.close();
   	heightWindowCheck.close();
   	RhythmFunc();
-  }
-  else m = setTimeout(StartAnimation,1); // Repeat until border is reached
+  } else m = setTimeout(StartAnimation,1); // Repeat until border is reached
 }
 
 function openWindow(location, newWindowX, newWindowY, newWindowWidth, newWindowHeight) {
@@ -60,8 +59,7 @@ function openWindow(location, newWindowX, newWindowY, newWindowWidth, newWindowH
 	try { nw.resizeTo(newWindowWidth, newWindowHeight); } catch(error) {} // Some browsers don't allow window resizing
     nw.moveTo(newWindowX, newWindowY);
     return nw;
-  }
-  catch (error) { console.log(error); }
+  } catch (error) { console.log(error); }
 }
 
 function percToN(percentage, n) {
