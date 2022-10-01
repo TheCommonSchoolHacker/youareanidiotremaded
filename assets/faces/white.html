@@ -2,16 +2,16 @@
 <html>
 <head>
 	<title>Idiot!</title>
+	<link rel="preload" as="image" href="faceWhite.png">
     <style>
 		html {
 			height: 100%;
 		}
         body {
-			background-image: url('faceBlack.png');
+			background-image: url('faceWhite.png');
 			background-repeat: no-repeat;
 			background-size: contain;
 			background-position: center;
-			background-color: black;
 		}
     </style>
 	<script>
@@ -20,6 +20,7 @@
 	  return Math.abs(v1 - v2) < epsilon;
 	};
 
+	var moveInterval;
 	window.addEventListener("message", (event) => {
 	  if (typeof event.data === 'string' || event.data instanceof String) {
 	    document.body.style.backgroundImage = "url('" + event.data + "')";
@@ -27,12 +28,13 @@
 	  }
 	  
 	  var finalDate = Date.now() + event.data[2];
-	  var newinterval = setInterval(function() {
+	  if (moveInterval != null) clearInterval(moveInterval);
+	  moveInterval = setInterval(function() {
 	    let remTime = finalDate - Date.now();
 		if (remTime <= 0 || (approxeq(window.screenLeft, event.data[0]) && approxeq(window.screenTop, event.data[1]))) {
 		  window.moveBy(event.data[0] - window.screenLeft, event.data[1] - window.screenTop);
 		  console.log('loop stopped');
-		  clearInterval(newinterval);
+		  clearInterval(moveInterval);
 		} else {
 	      let nextx = (event.data[0] - window.screenLeft) / (remTime / 10);
 		  let nexty = (event.data[1] - window.screenTop)  / (remTime / 10);

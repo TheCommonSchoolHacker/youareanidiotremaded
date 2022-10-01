@@ -9,7 +9,7 @@ function RedirectToOGnoFlash(msg) {
   setTimeout(function() { window.location.href = "ogNoFlash/index.html"; }, time);
 }
 
-var m;
+var startLoop;
 var stFinished, wcOpened = false;
 var screenWidth, widthWindowCheck, prevXposWWC;
 var screenHeight, heightWindowCheck, prevYposHWC;
@@ -46,7 +46,7 @@ function StartAnimation() {
   	widthWindowCheck.close();
   	heightWindowCheck.close();
   	RhythmFunc();
-  } else m = setTimeout(StartAnimation,1); // Repeat until border is reached
+  } else startLoop = setTimeout(StartAnimation,1); // Repeat until border is reached
 }
 
 function openWindow(location, newWindowX, newWindowY, newWindowWidth, newWindowHeight) {
@@ -60,8 +60,4 @@ function openWindow(location, newWindowX, newWindowY, newWindowWidth, newWindowH
     nw.moveTo(newWindowX, newWindowY);
     return nw;
   } catch (error) { console.log(error); }
-}
-
-function percToN(percentage, n) {
-  return (percentage / 100) * n;
 }
