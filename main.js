@@ -9,6 +9,43 @@ var stFinished = false;
 var screenWidth, widthWindowCheck, prevXposWWC;
 var screenHeight, heightWindowCheck, prevYposHWC;
 
+var vConsole = document.getElementById("console");
+vConsole.onkeydown = function(event) {
+	let lastCommandIndex = vConsole.value.lastIndexOf("\n") + 3;
+	if (vConsole.selectionStart < lastCommandIndex || vConsole.selectionEnd < lastCommandIndex) {
+		vConsole.setSelectionRange(vConsole.value.length, vConsole.value.length);
+	}
+	if (event.keyCode === 13) {
+		let inputCommand = vConsole.value.substring(lastCommandIndex).toLowerCase();
+		switch(inputCommand) {
+			case "you are an idiot":
+			case "you are an idiot!":
+			case "you're an idiot":
+			case "you're an idiot!":
+				vConsole.value += "\nno you are!";
+				break;
+			case "i am an idiot":
+			case "i am an idiot!":
+			case "i'm an idiot":
+			case "i'm an idiot!":
+				vConsole.value += "\nyes you are!";
+				break;
+			default:
+				vConsole.value += "\nyou are an idiot!";
+		}
+		vConsole.value += "\n>>";
+		vConsole.scrollTop = vConsole.scrollHeight;
+		event.preventDefault();
+	}
+}
+vConsole.oninput = function(event) {
+	let lastLinePos = vConsole.value.lastIndexOf("\n") + 1;
+	if (vConsole.value.length == lastLinePos) vConsole.value += ">";
+	else vConsole.value[lastLinePos] = ">";
+	if (vConsole.value.length == lastLinePos + 1) vConsole.value += ">";
+	else vConsole.value[lastLinePos + 1] = ">";
+}
+
 if (window.mobileAndTabletCheck()) {
   alert("Try on a computer next time D:");
   setTimeout(function() { window.location.href = "ogNoFlash/index.html"; }, 3000);
