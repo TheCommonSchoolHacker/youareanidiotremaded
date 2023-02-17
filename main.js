@@ -47,7 +47,9 @@ vConsole.oninput = function(event) {
 }
 
 if (window.mobileAndTabletCheck()) {
-  alert("Try on a computer next time D:");
+  vConsole.value = vConsole.value.slice(0, -2);
+  vConsole.value += "Try on a computer next time D:\n>>";
+  vConsole.scrollTop = vConsole.scrollHeight;
   setTimeout(function() { window.location.href = "ogNoFlash/index.html"; }, 3000);
 } else {
   document.addEventListener("mousedown", StartAnimation);
@@ -70,7 +72,9 @@ function StartAnimation() {
   } catch(error) {
     try { widthWindowCheck.close(); heightWindowCheck.close(); } catch(error) {} // Try closing the windows
     console.log(error);
-  	alert("Next time enable popups :)");
+    vConsole.value = vConsole.value.slice(0, -2);
+    vConsole.value += "Next time enable popups :)\n>>";
+    vConsole.scrollTop = vConsole.scrollHeight;
     return;
   }
   if (prevXposWWC == widthWindowCheck.screenLeft && prevYposHWC == heightWindowCheck.screenTop) {
