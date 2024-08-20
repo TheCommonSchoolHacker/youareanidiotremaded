@@ -93,9 +93,9 @@ function openWindow(location, newWindowX, newWindowY, newWindowWidth, newWindowH
     newWindowY = newWindowY || 1;
   	newWindowWidth = newWindowWidth || 200;
   	newWindowHeight = newWindowHeight || 200;
-	var nw = window.open(location || "", "", "width=" + newWindowWidth + ", height=" + newWindowHeight + ", menubar=no, location=no, resizable=no, scrollbars=no, status=no, titlebar=no, toolbar=no");
-	try { nw.resizeTo(newWindowWidth, newWindowHeight); } catch(error) {} // Some browsers don't allow window resizing
+	var nw = window.open(location || "about:blank", "_blank", "width=" + newWindowWidth + ", height=" + newWindowHeight + ", menubar=no, location=no, resizable=no, scrollbars=no, status=no, titlebar=no, toolbar=no");
     nw.moveTo(newWindowX, newWindowY);
+	try { nw.resizeTo(newWindowWidth, newWindowHeight); } catch(error) {} // Some browsers don't allow window resizing
     return nw;
   } catch (error) { console.log(error); }
 }
